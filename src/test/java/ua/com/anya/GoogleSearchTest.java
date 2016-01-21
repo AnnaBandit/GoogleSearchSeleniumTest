@@ -6,13 +6,12 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import ua.com.anya.Pages.GoogleSearchPage;
+import ua.com.anya.pages.GoogleSearchPage;
 
-import static junit.framework.TestCase.assertTrue;
+import static org.openqa.selenium.support.ui.ExpectedConditions.textToBePresentInElement;
 import static org.openqa.selenium.support.ui.ExpectedConditions.titleIs;
-import static ua.com.anya.helpers.CustomConditions.sizeOf;
+import static ua.com.anya.core.CustomConditions.sizeOf;
 
 public class GoogleSearchTest {
 
@@ -27,7 +26,7 @@ public class GoogleSearchTest {
 
     @Before
     public void createGooglePage(){
-        googleSearchPage = new GoogleSearchPage(driver);
+        googleSearchPage = GoogleSearchPage.load(driver);
     }
 
     @AfterClass
@@ -38,9 +37,8 @@ public class GoogleSearchTest {
     @Test
     public void testGoogleSearch(){
         googleSearchPage.find("Selenium automates browsers");
-        wait.until(ExpectedConditions.visibilityOfAllElements(googleSearchPage.results));
-        assertTrue(googleSearchPage.results.get(0).getText().contains("Selenium automates browsers"));
         wait.until(sizeOf(googleSearchPage.results, 10));
+        wait.until(textToBePresentInElement(googleSearchPage.results.get(0), "Selenium automates browsers"));
 
         googleSearchPage.openLink(0);
         wait.until(titleIs("Selenium - Web Browser Automation"));

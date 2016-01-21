@@ -1,4 +1,4 @@
-package ua.com.anya.helpers;
+package ua.com.anya.core;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;

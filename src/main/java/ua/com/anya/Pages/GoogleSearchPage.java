@@ -1,4 +1,4 @@
-package ua.com.anya.Pages;
+package ua.com.anya.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -10,27 +10,26 @@ import org.openqa.selenium.support.PageFactory;
 import java.util.List;
 
 public class GoogleSearchPage {
+
     @FindBy(name = "q")
     public WebElement searchField;
 
     @FindBy(css = ".srg>.g")
     public List<WebElement> results;
 
-    private WebDriver driver;
-
-    public GoogleSearchPage(WebDriver driver){
-        PageFactory.initElements(driver, this);
+    public static GoogleSearchPage load(WebDriver driver){
+        GoogleSearchPage googleSearchPage = PageFactory.initElements(driver, GoogleSearchPage.class);
         if (!"Google".equals(driver.getTitle())) {
             driver.get("https://www.google.com/ncr");
         }
+        return googleSearchPage;
     }
 
     public void find(String text){
         searchField.sendKeys(text + Keys.ENTER);
     }
 
-    public SeleniumPage openLink(int number){
+    public void openLink(int number){
         results.get(number).findElement(By.cssSelector(".r>a")).click();
-        return new SeleniumPage(driver);
     }
 }
