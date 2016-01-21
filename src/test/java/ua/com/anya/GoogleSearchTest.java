@@ -6,6 +6,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import ua.com.anya.Pages.GoogleSearchPage;
 
@@ -37,8 +38,9 @@ public class GoogleSearchTest {
     @Test
     public void testGoogleSearch(){
         googleSearchPage.find("Selenium automates browsers");
-        wait.until(sizeOf(googleSearchPage.results, 10));
+        wait.until(ExpectedConditions.visibilityOfAllElements(googleSearchPage.results));
         assertTrue(googleSearchPage.results.get(0).getText().contains("Selenium automates browsers"));
+        wait.until(sizeOf(googleSearchPage.results, 10));
 
         googleSearchPage.openLink(0);
         wait.until(titleIs("Selenium - Web Browser Automation"));
