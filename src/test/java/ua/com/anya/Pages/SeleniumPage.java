@@ -4,7 +4,9 @@ import org.openqa.selenium.WebDriver;
 
 public class SeleniumPage {
 
-    public String headerText(WebDriver driver){
-        return driver.getTitle();
+    public WebDriver driver;
+
+    public SeleniumPage(WebDriver driver){
+        this.driver = driver;
     }
 }

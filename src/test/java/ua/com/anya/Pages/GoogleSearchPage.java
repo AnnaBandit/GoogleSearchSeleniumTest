@@ -14,26 +14,23 @@ public class GoogleSearchPage {
     public WebElement searchField;
 
     @FindBy(css = ".srg>.g")
-    public List<WebElement> searchResults;
+    public List<WebElement> results;
 
     private WebDriver driver;
 
     public GoogleSearchPage(WebDriver driver){
         PageFactory.initElements(driver, this);
+        if (!"Google".equals(driver.getTitle())) {
+            driver.get("https://www.google.com/ncr");
+        }
     }
 
-    public GoogleSearchPage find(String text){
+    public void find(String text){
         searchField.sendKeys(text + Keys.ENTER);
-        return this;
     }
 
-    public GoogleSearchPage assertFirstLinkContains(String text){
-        searchResults.get(0).getText().contains(text);
-        return this;
-    }
-
-    public SeleniumPage openFirstLink(){
-        searchResults.get(0).findElement(By.cssSelector(".r>a")).click();
-        return new SeleniumPage();
+    public SeleniumPage openLink(int number){
+        results.get(number).findElement(By.cssSelector(".r>a")).click();
+        return new SeleniumPage(driver);
     }
 }
