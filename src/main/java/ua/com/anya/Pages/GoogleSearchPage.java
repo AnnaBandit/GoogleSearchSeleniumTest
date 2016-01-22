@@ -17,7 +17,11 @@ public class GoogleSearchPage {
     @FindBy(css = ".srg>.g")
     public List<WebElement> results;
 
-    public static GoogleSearchPage load(WebDriver driver){
+    public By getNthResult(int resultNumber){
+        return By.cssSelector(".srg .g:nth-child(" + resultNumber + ")");
+    }
+
+    public static GoogleSearchPage ensureLoaded(WebDriver driver){
         GoogleSearchPage googleSearchPage = PageFactory.initElements(driver, GoogleSearchPage.class);
         if (!"Google".equals(driver.getTitle())) {
             driver.get("https://www.google.com/ncr");
