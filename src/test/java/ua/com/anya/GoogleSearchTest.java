@@ -2,14 +2,14 @@ package ua.com.anya;
 
 import org.junit.Test;
 import org.openqa.selenium.support.PageFactory;
-import ua.com.anya.configs.AtGoogleSearchPageWithCreatedPageObjectAndDriver;
+import ua.com.anya.configs.AtGoogleSearchPageWithCreatedDriver;
 import ua.com.anya.pages.GoogleSearchPage;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.titleIs;
 import static ua.com.anya.core.CustomConditions.listNthElementHasText;
 import static ua.com.anya.core.CustomConditions.sizeOf;
 
-public class GoogleSearchTest extends AtGoogleSearchPageWithCreatedPageObjectAndDriver {
+public class GoogleSearchTest extends AtGoogleSearchPageWithCreatedDriver {
 
     GoogleSearchPage googleSearchPage = PageFactory.initElements(driver, GoogleSearchPage.class);
 

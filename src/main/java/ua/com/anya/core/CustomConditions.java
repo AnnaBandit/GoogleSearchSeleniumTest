@@ -26,12 +26,14 @@ public class CustomConditions{
 
     public static ExpectedCondition<Boolean> sizeOf(final List<WebElement> elements, final int expectedSize) {
         return new ExpectedCondition<Boolean>() {
+            private int listSize;
             public Boolean apply(WebDriver driver) {
-                return elements.size() == expectedSize;
+                listSize = elements.size();
+                return listSize == expectedSize;
             }
 
             public String toString(){
-                return String.format("Actual size of the list is %s,\nexpected size is %s", elements.size(), expectedSize);
+                return String.format("Actual size of the list is %s,\nexpected size is %s", listSize, expectedSize);
             }
         };
     }

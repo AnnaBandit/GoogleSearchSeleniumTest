@@ -7,7 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class AtGoogleSearchPageWithCreatedPageObjectAndDriver {
+public class AtGoogleSearchPageWithCreatedDriver {
 
     public static WebDriver driver;
     public WebDriverWait wait = new WebDriverWait(driver, 10);
@@ -18,7 +18,7 @@ public class AtGoogleSearchPageWithCreatedPageObjectAndDriver {
     }
 
     @Before
-    public void createAndLoadGooglePage(){
+    public void ensureGooglePageIsOpened(){
         if (!"Google".equals(driver.getTitle())) {
             driver.get("https://www.google.com/ncr");
         }
