@@ -17,13 +17,21 @@ public class CustomConditions{
                     return false;
                 }
             }
+
+            public String toString() {
+                return String.format("There is no '%s' text on the element number %s.", expectedText, index);
+            }
         };
     }
 
-    public static ExpectedCondition<Boolean> sizeOf(final List<WebElement> elements, final int size) {
+    public static ExpectedCondition<Boolean> sizeOf(final List<WebElement> elements, final int expectedSize) {
         return new ExpectedCondition<Boolean>() {
             public Boolean apply(WebDriver driver) {
-                return elements.size() == size;
+                return elements.size() == expectedSize;
+            }
+
+            public String toString(){
+                return String.format("Actual size of the list is %s,\nexpected size is %s", elements.size(), expectedSize);
             }
         };
     }

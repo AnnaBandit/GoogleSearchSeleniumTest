@@ -6,13 +6,11 @@ import org.junit.BeforeClass;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import ua.com.anya.pages.GoogleSearchPage;
 
 public class AtGoogleSearchPageWithCreatedPageObjectAndDriver {
 
     public static WebDriver driver;
-    public GoogleSearchPage googleSearchPage;
-    public WebDriverWait wait = new WebDriverWait(driver, 1000);
+    public WebDriverWait wait = new WebDriverWait(driver, 10);
 
     @BeforeClass
     public static void setUp(){
@@ -21,7 +19,9 @@ public class AtGoogleSearchPageWithCreatedPageObjectAndDriver {
 
     @Before
     public void createAndLoadGooglePage(){
-        googleSearchPage = GoogleSearchPage.ensureLoaded(driver);
+        if (!"Google".equals(driver.getTitle())) {
+            driver.get("https://www.google.com/ncr");
+        }
     }
 
     @AfterClass
