@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+
 import java.util.List;
 
 public class GoogleSearchPage {
@@ -15,10 +16,6 @@ public class GoogleSearchPage {
 
     @FindBy(css = ".srg>.g")
     public List<WebElement> results;
-
-    public By getNthResult(int resultNumber){
-        return By.cssSelector(".srg .g:nth-child(" + resultNumber + ")");
-    }
 
     public static GoogleSearchPage ensureLoaded(WebDriver driver){
         GoogleSearchPage googleSearchPage = PageFactory.initElements(driver, GoogleSearchPage.class);
