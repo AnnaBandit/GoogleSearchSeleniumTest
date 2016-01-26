@@ -2,6 +2,7 @@ package ua.com.anya.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -14,6 +15,12 @@ public class GoogleSearchPage {
 
     @FindBy(css = ".srg>.g")
     public List<WebElement> results;
+
+    public void ensureGooglePageIsOpened(WebDriver driver){
+        if (!"Google".equals(driver.getTitle())) {
+            driver.get("https://www.google.com/ncr");
+        }
+    }
 
     public void search(String text){
         searchField.sendKeys(text + Keys.ENTER);
