@@ -2,6 +2,7 @@ package ua.com.anya;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.openqa.selenium.support.PageFactory;
 import ua.com.anya.configs.BaseTest;
 import ua.com.anya.pages.GoogleSearchPage;
 
@@ -11,7 +12,7 @@ import static ua.com.anya.core.CustomConditions.sizeOf;
 
 public class GoogleSearchTest extends BaseTest {
 
-    GoogleSearchPage googleSearchPage = new GoogleSearchPage(driver);
+    GoogleSearchPage googleSearchPage = PageFactory.initElements(driver, GoogleSearchPage.class);;
 
     @Before
     public void atGooglePage(){

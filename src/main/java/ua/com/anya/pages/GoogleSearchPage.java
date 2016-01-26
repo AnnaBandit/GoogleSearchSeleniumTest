@@ -5,12 +5,10 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-import ua.com.anya.configs.BaseTest;
 
 import java.util.List;
 
-public class GoogleSearchPage extends BaseTest{
+public class GoogleSearchPage {
 
     WebDriver driver;
 
@@ -22,7 +20,6 @@ public class GoogleSearchPage extends BaseTest{
 
     public GoogleSearchPage(WebDriver driver){
         this.driver = driver;
-        PageFactory.initElements(driver, GoogleSearchPage.class);
     }
 
     public void ensureGooglePageIsOpened(){
@@ -38,5 +35,6 @@ public class GoogleSearchPage extends BaseTest{
     public void openNthLink(int number){
         results.get(number).findElement(By.cssSelector(".r>a")).click();
     }
+
 }
 
